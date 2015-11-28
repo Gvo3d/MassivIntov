@@ -11,19 +11,15 @@ public class Massiv {
         integers = new IntegerValue[ARRAYSTARTINGLENGTH];
     }
 
-    public Massiv(int userArrayStartingLength) {
-        this.integers = new IntegerValue[userArrayStartingLength];
-    }
-
     public void printIntegers() {
         for (int i=0; i<integers.length; i++) System.out.println("Cell: "+i+ " value: "+integers[i].getValue());
     }
 
-    public int Size(){
+    public int getSize(){
         return integers.length;
     }
 
-    public void setIntegers(int[] newintegers) {
+    public void addAll(int[] newintegers) {
         integers = new IntegerValue[newintegers.length];
         for (int i=0; i<this.integers.length;i++) integers[i]= new IntegerValue(newintegers[i]);
         massivTrim();
@@ -56,13 +52,47 @@ public class Massiv {
         massivTrim();
     }
 
-    public void InsertValueInto (int valueId, int newvalue){
+    public void insertValueInto (int valueId, int newvalue){
         integers[valueId]= new IntegerValue(newvalue);
     }
 
-    public void InsertValue (int newvalue){
+    public void add (int newvalue){
         massivChangeLength(integers.length+1);
         integers[integers.length-1]= new IntegerValue(newvalue);
     }
+
+    public int getValue(int valueID){
+        return integers[valueID].getValue();
+    }
+
+    public boolean contains (int value) {
+        for (int i=0; i<integers.length; i++) {
+            if (integers[i].getValue()==value) return true;
+            }
+        return false;
+    }
+
+    public int find (int value) {
+        for (int i=0; i<integers.length; i++) {
+            if (integers[i].getValue()==value) return i;
+        }
+        return 0;
+    }
+
+    public void clear(){
+        integers = new IntegerValue[ARRAYSTARTINGLENGTH];
+    }
+
+    public boolean equals(int[] newintegers) {
+        for (int i=0; i<this.integers.length;i++) {
+         if (integers[i].getValue()!=newintegers[i]) return false;
+         }
+        return true;
+    }
+
+    public void sort () {
+
+    }
+
 
 }
