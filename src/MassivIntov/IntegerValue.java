@@ -7,7 +7,7 @@ public class IntegerValue {
     private final int VALUE;
 
     public IntegerValue(int value) {
-        this.VALUE=value;
+        this.VALUE = value;
     }
 
     public int getValue() {
