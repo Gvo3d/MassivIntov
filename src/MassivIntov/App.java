@@ -1,10 +1,9 @@
 package MassivIntov;
 
-import java.lang.reflect.Array;
-
 /**
- * Created by Gvozd on 28.11.2015.
+ * Made by Yakimov Denis, 29/11/2015 for Hillel Java course
  */
+
 public class App {
     public static void main(String[] args) {
 
