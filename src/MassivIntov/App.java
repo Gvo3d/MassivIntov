@@ -11,9 +11,10 @@ public class App {
         int[] array;
         array = new int[]{4, 6, 3, 2, 1, 2, 6, 7};
 
-        Massiv mass = new Massiv();
+        Massiv mass = new Massiv(0);
         mass.setIntegers(array);
 
+        mass.deleteValue();
         System.out.println(mass.Size());
         mass.printIntegers();
     }

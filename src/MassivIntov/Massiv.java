@@ -5,36 +5,35 @@ package MassivIntov;
  */
 public class Massiv {
     private static final int ARRAYSTARTINGLENGTH=0;
-    private int[] integers;
-    private boolean[] integersValidation;
- //   private int integersCount=0;
+    private IntegerValue[] integers;
 
     public Massiv() {
-        integers = new int[ARRAYSTARTINGLENGTH];
-        integersValidation = new boolean[ARRAYSTARTINGLENGTH];
+        integers = new IntegerValue[ARRAYSTARTINGLENGTH];
     }
 
     public Massiv(int userArrayStartingLength) {
-        this.integers = new int[userArrayStartingLength];
-        integersValidation = new boolean[userArrayStartingLength];
+        this.integers = new IntegerValue[userArrayStartingLength];
     }
 
     public void printIntegers() {
-        for (int result:integers) System.out.println("Value "+result+ " is"+integersValidation[result]);
+        for (int i=0; i<integers.length; i++) {
+            if (integers[i].isNull()) {
+                System.out.println("Value "+i+ " is "+integers[i].getValue());
+            } else System.out.println("Value "+i+ " is null");
+        }
     }
 
     public int Size(){
         return integers.length;
     }
 
-    public void setIntegers(int[] integers) {
-        this.integers = integers;
-        this.integersValidation= new boolean[integers.length];
-        for (int i=0; i<integersValidation.length; i++) integersValidation[i]=true;
+    public void setIntegers(int[] newintegers) {
+        integers = new IntegerValue[newintegers.length];
+        for (int i=0; i<this.integers.length;i++) integers[i]= new IntegerValue(newintegers[i]);
     }
 
     private void massivChangeLength (int newLength){
-        int[] newArrayOfIntegers = new int[newLength];
+        IntegerValue[] newArrayOfIntegers = new IntegerValue[newLength];
         newArrayOfIntegers = integers.clone();
         integers=newArrayOfIntegers;
     }
@@ -42,20 +41,30 @@ public class Massiv {
     private void massivTrim () {
         int resultingArrayLength=0;
         for (int i =0; i<integers.length; i++) {
-            if (integersValidation[i]) resultingArrayLength++;
+            if (integers[i]!=null) resultingArrayLength++;
         }
-        int[] newArrayOfIntegers = new int[resultingArrayLength];
+        IntegerValue[] newArrayOfIntegers = new IntegerValue[resultingArrayLength];
         int newValueOfNewArrayOfIntegers=0;
         for (int i =0; i<integers.length; i++) {
-            if (integersValidation[i]) {
+            if (integers[i]!=null) {
                 newArrayOfIntegers[newValueOfNewArrayOfIntegers]=integers[i];
                 newValueOfNewArrayOfIntegers++;
             }
         }
-        integersValidation = new boolean[resultingArrayLength];
-        for (int i=0; i<integersValidation.length; i++) integersValidation[i]=true;
         integers=newArrayOfIntegers;
     }
 
+    public void deleteValue(){
+        integers[5]=null;
+    }
+
+    public void InsertValueInto (int valueId, int newvalue){
+        integers[valueId]= new IntegerValue(newvalue);
+    }
+
+    public void InsertValue (int newvalue){
+        massivChangeLength(integers.length+1);
+        integers[integers.length-1]= new IntegerValue(newvalue);
+    }
 
 }
