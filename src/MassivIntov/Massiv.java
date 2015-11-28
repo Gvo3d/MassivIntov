@@ -91,7 +91,16 @@ public class Massiv {
     }
 
     public void sort () {
-
+        int bubble=0;
+        for (int i = 0; i < integers.length-1; i++){
+            for (int j = 0; j<integers.length -i-1; j++){
+                if (integers[j].getValue()>integers[j+1].getValue()) {
+                    bubble = integers[j+1].getValue();
+                    integers[j+1]=integers[j];
+                    integers[j]= new IntegerValue(bubble);
+                }
+            }
+        }
     }
 
 

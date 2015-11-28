@@ -56,9 +56,8 @@ public class App {
 
         System.out.println();
         System.out.println("And we are sorting our array!");
-
-
-
+        mass.sort();
+        mass.printIntegers();
 
     }
 }
