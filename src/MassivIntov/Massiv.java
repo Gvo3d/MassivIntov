@@ -16,11 +16,7 @@ public class Massiv {
     }
 
     public void printIntegers() {
-        for (int i=0; i<integers.length; i++) {
-            if (integers[i].isNull()) {
-                System.out.println("Value "+i+ " is "+integers[i].getValue());
-            } else System.out.println("Value "+i+ " is null");
-        }
+        for (int i=0; i<integers.length; i++) System.out.println("Cell: "+i+ " value: "+integers[i].getValue());
     }
 
     public int Size(){
@@ -30,11 +26,12 @@ public class Massiv {
     public void setIntegers(int[] newintegers) {
         integers = new IntegerValue[newintegers.length];
         for (int i=0; i<this.integers.length;i++) integers[i]= new IntegerValue(newintegers[i]);
+        massivTrim();
     }
 
     private void massivChangeLength (int newLength){
         IntegerValue[] newArrayOfIntegers = new IntegerValue[newLength];
-        newArrayOfIntegers = integers.clone();
+        System.arraycopy(integers, 0, newArrayOfIntegers, 0, integers.length);
         integers=newArrayOfIntegers;
     }
 
@@ -54,8 +51,9 @@ public class Massiv {
         integers=newArrayOfIntegers;
     }
 
-    public void deleteValue(){
-        integers[5]=null;
+    public void deleteValue(int valueId){
+        integers[valueId]=null;
+        massivTrim();
     }
 
     public void InsertValueInto (int valueId, int newvalue){
